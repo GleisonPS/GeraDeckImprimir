@@ -1,6 +1,3 @@
-Aqui está um exemplo de como o README.md para o projeto "ImprimirDeckEduPro" poderia ser estruturado:
-
-```markdown
 # ImprimirDeckEduPro
 
 O **ImprimirDeckEduPro** é uma ferramenta desenvolvida para facilitar a criação de materiais impressos de decks de cartas colecionáveis. Com este projeto, você pode importar arquivos de texto ou `.ydk`, baixar imagens de cartas de uma API, gerar um documento Word com as imagens no tamanho adequado, converter o documento para PDF e salvar o arquivo PDF em uma pasta específica.
