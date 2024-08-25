@@ -84,5 +84,3 @@ Este projeto é licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE
 ## Contato
 
 Para quaisquer dúvidas ou suporte, entre em contato pelo Discord: toupeira21
-
-Este README fornece uma visão geral do projeto, instruções de instalação e uso, além de orientações para contribuição e contato. Sinta-se à vontade para ajustar conforme suas necessidades e adicionar mais informações se necessário!
