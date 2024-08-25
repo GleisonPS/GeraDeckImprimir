@@ -77,6 +77,21 @@ Se você deseja contribuir para este projeto, por favor, siga as seguintes diret
 4. Envie a branch para o repositório (`git push origin minha-feature`).
 5. Abra um Pull Request.
 
+## Lista de Afazeres
+
+Aqui estão algumas das tarefas que precisam ser concluídas para o desenvolvimento contínuo deste projeto:
+
+- [ ] **Adicionar o Processar e Gerar PDF**
+   - Ainda não fiz função pra essa funcionabilidade 
+   
+- [ ] **Melhorar interface**
+  - A interface a ainda estar muito simples e ainda tá muito capada
+
+- [ ] **Adicionar um interfacepra salvar os arquivos PDF**
+  - Facilitar pra pessoa buscar o PDF e salvar nos local selecionado
+
+
+
 ## Licença
 
 Este projeto é licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
