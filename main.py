@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
-from Baixar_cards import Init_Baixar
+from Funcoes import Init_Baixar
 
 # Função que é chamada quando o botão de upload é clicado
 def upload_file():
