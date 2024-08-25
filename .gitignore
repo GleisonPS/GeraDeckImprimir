@@ -162,6 +162,5 @@ cython_debug/
 #.idea/
 codigo_base.txt
 teste.py
-Teste.ydk
 deckPronto/*
 Cards/*
