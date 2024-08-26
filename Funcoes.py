@@ -4,6 +4,8 @@ from tkinter import messagebox
 import urllib.request as request
 from docx import Document
 from docx.shared import Inches,Mm
+from docx.enum.section import WD_ORIENT
+
 
 
 # Função que é chamada quando o botão de upload é clicado
@@ -51,6 +53,13 @@ def Init_Baixar(Arquivo,nome="teste"):
     section.bottom_margin = Mm(0)
     documento.element
 
+    # Modifica as propriedades de página para paisagem
+    section.orientation = WD_ORIENT.LANDSCAPE
+    # Ajusta a largura e altura da página para a orientação paisagem
+    new_width, new_height = section.page_height, section.page_width
+    section.page_width = new_width
+    section.page_height = new_height
+
 
 
     with open(Arquivo, "r") as arquivo:
@@ -60,10 +69,15 @@ def Init_Baixar(Arquivo,nome="teste"):
             else:
                 cards.append(linha.strip())
 
+    paragraph = documento.add_paragraph()
+
+    # Adiciona a imagem no mesmo parágrafo
+    run = paragraph.add_run()
+    
     for codeC in cards:
         baixar(codeC)
         try:
-            Add_img(documento,codeC)
+            Add_img(run,codeC)
         except:
             pass
 
@@ -77,11 +91,12 @@ def Init_Baixar(Arquivo,nome="teste"):
 
 
 def Add_img(documento,codeCard):
+    documento.add_text("    ")
+
     caminho = f"Cards/{codeCard}.jpg"
     
     # Converte as dimensões de mm para polegadas
     largura_polegadas = 57 / 25.4
     altura_polegadas = 89 / 25.4
 
-    # Insere a imagem com tamanho específico (largura e altura em polegadas)
     documento.add_picture(caminho, width=Inches(largura_polegadas), height=Inches(altura_polegadas))
