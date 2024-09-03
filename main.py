@@ -1,6 +1,7 @@
 from tkinter import *
 import Funcoes
 from Funcoes import Init_Baixar
+import os
 class PlaceholderEntry(Entry):
     def __init__(self, master=None, placeholder="", *args, **kwargs):
         super().__init__(master, *args, **kwargs)
@@ -11,7 +12,7 @@ class PlaceholderEntry(Entry):
 
     def _set_placeholder(self):
         self.insert(0, self.placeholder)
-        self.config(fg='grey', font=('Arial', 15))
+        self.config(fg='black', font=('Arial', 15))
 
     def _on_focus_in(self, event):
         if self.get() == self.placeholder:
@@ -22,12 +23,22 @@ class PlaceholderEntry(Entry):
         if self.get() == '':
             self._set_placeholder()
 
+def abrir_pasta():
+    caminho = Funcoes.upload_file()
+    if caminho:
+        choose_file_path.delete(0, 'end')
+        choose_file_path.insert(0, caminho)
+
+        # Extrai o nome do arquivo sem a extensão e atualiza a entrada `nome_arquivo`
+        file_name = os.path.splitext(os.path.basename(caminho))[0]
+        nome_arquivo.delete(0, 'end')  # Limpa a entrada
+        nome_arquivo.insert(0, file_name)
 # Configuração da janela principal
 root = Tk()
 root.title("Uploader de Arquivos")
 root.geometry("450x250")
-
-choose_file = Button(root, command=Funcoes.upload_file)
+imagem = PhotoImage(file='pasta(3).png')
+choose_file = Button(root, command=abrir_pasta, image=imagem)
 choose_file.place(relx=0.1, rely=0.1, relheight=0.15, relwidth=0.1)
 
 choose_file_path = PlaceholderEntry(root, placeholder='Informe o arquivo...')
@@ -36,7 +47,7 @@ choose_file_path.place(relx=0.23, rely=0.1, relheight=0.15, relwidth=0.7)
 nome_arquivo = PlaceholderEntry(root, placeholder='Digite o nome do arquivo...')
 nome_arquivo.place(relx=0.23, rely=0.35, relheight=0.15, relwidth=0.7)
 
-botao_criar = Button(root, text='Criar', font=('Arial', 15, 'bold'), command=lambda: criar_arquivo(choose_file, nome_arquivo))
+botao_criar = Button(root, text='Criar', font=('Arial', 15, 'bold')) #(choose_file, nome_arquivo))
 botao_criar.place(relx=0.35, rely=0.7, relheight=0.2, relwidth=0.3)
 
 
