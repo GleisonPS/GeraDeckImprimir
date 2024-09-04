@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import Funcoes
 from Funcoes import Init_Baixar
 import os
@@ -33,6 +34,13 @@ def abrir_pasta():
         file_name = os.path.splitext(os.path.basename(caminho))[0]
         nome_arquivo.delete(0, 'end')  # Limpa a entrada
         nome_arquivo.insert(0, file_name)
+def criar_deck():
+    rota = choose_file_path.get()
+    nome_do_arquivo = nome_arquivo.get()
+    if rota and nome_do_arquivo:
+        Init_Baixar(rota, nome_do_arquivo)
+    else:
+        messagebox.showwarning('Dados incompletos', 'Por favor, selecione um arquivo e um nome válidos.')
 # Configuração da janela principal
 root = Tk()
 root.title("Uploader de Arquivos")
@@ -47,7 +55,7 @@ choose_file_path.place(relx=0.23, rely=0.1, relheight=0.15, relwidth=0.7)
 nome_arquivo = PlaceholderEntry(root, placeholder='Digite o nome do arquivo...')
 nome_arquivo.place(relx=0.23, rely=0.35, relheight=0.15, relwidth=0.7)
 
-botao_criar = Button(root, text='Criar', font=('Arial', 15, 'bold')) #(choose_file, nome_arquivo))
+botao_criar = Button(root, text='Criar', font=('Arial', 15, 'bold'), command=criar_deck) #(choose_file, nome_arquivo))
 botao_criar.place(relx=0.35, rely=0.7, relheight=0.2, relwidth=0.3)
 
 
