@@ -1,24 +1,62 @@
-import tkinter as tk
+from tkinter import *
+from tkinter import messagebox
 import Funcoes
 from Funcoes import Init_Baixar
+import os
+class PlaceholderEntry(Entry):
+    def __init__(self, master=None, placeholder="", *args, **kwargs):
+        super().__init__(master, *args, **kwargs)
+        self.placeholder = placeholder
+        self.bind("<FocusIn>", self._on_focus_in)
+        self.bind("<FocusOut>", self._on_focus_out)
+        self._set_placeholder()
 
+    def _set_placeholder(self):
+        self.insert(0, self.placeholder)
+        self.config(fg='black', font=('Arial', 15))
 
+    def _on_focus_in(self, event):
+        if self.get() == self.placeholder:
+            self.delete(0, END)
+            self.config(fg='black', font=('Arial', 15))
+
+    def _on_focus_out(self, event):
+        if self.get() == '':
+            self._set_placeholder()
+
+def abrir_pasta():
+    caminho = Funcoes.upload_file()
+    if caminho:
+        choose_file_path.delete(0, 'end')
+        choose_file_path.insert(0, caminho)
+
+        # Extrai o nome do arquivo sem a extensão e atualiza a entrada `nome_arquivo`
+        file_name = os.path.splitext(os.path.basename(caminho))[0]
+        nome_arquivo.delete(0, 'end')  # Limpa a entrada
+        nome_arquivo.insert(0, file_name)
+def criar_deck():
+    rota = choose_file_path.get()
+    nome_do_arquivo = nome_arquivo.get()
+    if rota and nome_do_arquivo:
+        Init_Baixar(rota, nome_do_arquivo)
+    else:
+        messagebox.showwarning('Dados incompletos', 'Por favor, selecione um arquivo e um nome válidos.')
 # Configuração da janela principal
-root = tk.Tk()
+root = Tk()
 root.title("Uploader de Arquivos")
 root.geometry("450x250")
+imagem = PhotoImage(file='pasta(3).png')
+choose_file = Button(root, command=abrir_pasta, image=imagem)
+choose_file.place(relx=0.1, rely=0.1, relheight=0.15, relwidth=0.1)
 
-# Rótulo de instrução
-label = tk.Label(root, text="Clique no botão para fazer upload de um arquivo.")
-label.pack(pady=20)
+choose_file_path = PlaceholderEntry(root, placeholder='Informe o arquivo...')
+choose_file_path.place(relx=0.23, rely=0.1, relheight=0.15, relwidth=0.7)
 
-# Botão para abrir o upload do deck
-upload_deck = tk.Button(root, text="Upload de Arquivo do deck", command=Funcoes.upload_file)
-upload_deck.pack(pady=10)
+nome_arquivo = PlaceholderEntry(root, placeholder='Digite o nome do arquivo...')
+nome_arquivo.place(relx=0.23, rely=0.35, relheight=0.15, relwidth=0.7)
 
-#Botão de acessar o Historico
-historico = tk.Button(root,text="Historico")
+botao_criar = Button(root, text='Criar', font=('Arial', 15, 'bold'), command=criar_deck) #(choose_file, nome_arquivo))
+botao_criar.place(relx=0.35, rely=0.7, relheight=0.2, relwidth=0.3)
 
 
-# Inicia o loop principal da interface
 root.mainloop()

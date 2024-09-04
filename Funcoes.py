@@ -21,7 +21,7 @@ def upload_file():
     
     if file_path:  # Verifica se um arquivo foi selecionado
         #messagebox.showinfo("Arquivo Selecionado", f"O arquivo {file_path} foi selecionado!")
-        Init_Baixar(file_path)
+        return file_path
     else:
         messagebox.showwarning("Nenhum arquivo", "Nenhum arquivo foi selecionado.")
 
