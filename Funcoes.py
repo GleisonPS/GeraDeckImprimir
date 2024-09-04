@@ -91,8 +91,7 @@ def Init_Baixar(Arquivo,nome="teste"):
 
 
 def Add_img(documento,codeCard):
-    documento.add_text("    ")
-
+    
     caminho = f"Cards/{codeCard}.jpg"
     
     # Converte as dimensões de mm para polegadas
@@ -100,3 +99,6 @@ def Add_img(documento,codeCard):
     altura_polegadas = 89 / 25.4
 
     documento.add_picture(caminho, width=Inches(largura_polegadas), height=Inches(altura_polegadas))
+    
+    #Adicionar um espaço depois da imagem
+    documento.add_text("    ")
