@@ -45,7 +45,7 @@ def criar_deck():
 root = Tk()
 root.title("Uploader de Arquivos")
 root.geometry("450x250")
-imagem = PhotoImage(file='pasta(3).png')
+imagem = PhotoImage(file='Imgs/pasta(3).png')
 choose_file = Button(root, command=abrir_pasta, image=imagem)
 choose_file.place(relx=0.1, rely=0.1, relheight=0.15, relwidth=0.1)
 
