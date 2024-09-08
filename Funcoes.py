@@ -1,10 +1,50 @@
 import os
-from tkinter import filedialog
-from tkinter import messagebox
+from tkinter import *
+from tkinter import messagebox,filedialog
 import urllib.request as request
 from docx import Document
 from docx.shared import Inches,Mm
 from docx.enum.section import WD_ORIENT
+
+class PlaceholderEntry(Entry):
+    def __init__(self, master=None, placeholder="", *args, **kwargs):
+        super().__init__(master, *args, **kwargs)
+        self.placeholder = placeholder
+        self.bind("<FocusIn>", self._on_focus_in)
+        self.bind("<FocusOut>", self._on_focus_out)
+        self._set_placeholder()
+
+    def _set_placeholder(self):
+        self.insert(0, self.placeholder)
+        self.config(fg='black', font=('Arial', 15))
+
+    def _on_focus_in(self, event):
+        if self.get() == self.placeholder:
+            self.delete(0, END)
+            self.config(fg='black', font=('Arial', 15))
+
+    def _on_focus_out(self, event):
+        if self.get() == '':
+            self._set_placeholder()
+
+def abrir_pasta(choose_file_path,nome_arquivo):
+    caminho = upload_file()
+    if caminho:
+        choose_file_path.delete(0, 'end')
+        choose_file_path.insert(0, caminho)
+
+        # Extrai o nome do arquivo sem a extensão e atualiza a entrada `nome_arquivo`
+        file_name = os.path.splitext(os.path.basename(caminho))[0]
+        nome_arquivo.delete(0, 'end')  # Limpa a entrada
+        nome_arquivo.insert(0, file_name)
+    
+def criar_deck(choose_file_path,nome_arquivo):
+    rota = choose_file_path.get()
+    nome_do_arquivo = nome_arquivo.get()
+    if rota and nome_do_arquivo:
+        Init_Baixar(rota, nome_do_arquivo)
+    else:
+        messagebox.showwarning('Dados incompletos', 'Por favor, selecione um arquivo e um nome válidos.')
 
 
 
