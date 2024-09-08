@@ -75,11 +75,11 @@ def baixar(card):
         os.makedirs(pasta)
     
     try:
-        request.urlretrieve(f"{url}{card}.jpg", f"{pasta}/{card}.jpg")
+        if not os.path.isfile(f"Cards/{card}.jpg"):
+            request.urlretrieve(f"{url}{card}.jpg", f"{pasta}/{card}.jpg")
     except Exception as ex:
         print(f"Erro ao baixar a imagem: {ex}")
 
-    
 
 def Init_Baixar(Arquivo,nome="teste"):
     cards = []
