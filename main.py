@@ -7,7 +7,7 @@ root.title("Uploader de Arquivos")
 root.geometry("450x250")
 
 #Campo pra informa o caminho doarquivo do deck .ydk
-imagem = PhotoImage(file='Imgs/pasta(3).png')
+imagem = PhotoImage(file='Imgs/Icone_pasta.png')
 choose_file = Button(root, command=lambda: abrir_pasta(choose_file_path,nome_arquivo), image=imagem)
 choose_file.place(relx=0.1, rely=0.1, relheight=0.15, relwidth=0.1)
 
