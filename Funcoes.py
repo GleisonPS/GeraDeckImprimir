@@ -47,7 +47,6 @@ def criar_deck(choose_file_path,nome_arquivo):
         messagebox.showwarning('Dados incompletos', 'Por favor, selecione um arquivo e um nome válidos.')
 
 
-
 # Função que é chamada quando o botão de upload é clicado
 def upload_file():
     # Abre uma caixa de diálogo para seleção de arquivo

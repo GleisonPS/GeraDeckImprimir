@@ -20,5 +20,6 @@ nome_arquivo.place(relx=0.23, rely=0.35, relheight=0.15, relwidth=0.7)
 botao_criar = Button(root, text='Criar', font=('Arial', 15, 'bold'), command=lambda: criar_deck(choose_file_path,nome_arquivo)) 
 botao_criar.place(relx=0.35, rely=0.7, relheight=0.2, relwidth=0.3)
 
+  
 
 root.mainloop()
