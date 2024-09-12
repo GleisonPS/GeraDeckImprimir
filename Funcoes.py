@@ -141,3 +141,18 @@ def Add_img(documento,codeCard):
     
     #Adicionar um espaço depois da imagem
     documento.add_text("    ")
+
+def limpar_IMG():
+    folder = 'Cards'
+
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        
+        try:
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+            elif os.path.isdir(file_path):
+                os.rmdir(file_path)  # Remove apenas pastas vazias
+        except Exception as e:
+            print(f'Erro ao remover {file_path}. Erro: {e}')
+    messagebox.showwarning("Arquivos Limpos", "Todas as imagens baixada antes foram excluidas.")
