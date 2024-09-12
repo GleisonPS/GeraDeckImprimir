@@ -80,7 +80,7 @@ def baixar(card):
         print(f"Erro ao baixar a imagem: {ex}")
 
 
-def Init_Baixar(Arquivo,nome="teste"):
+def Init_Baixar(Arquivo,nome="Deck"):
     cards = []
     documento = Document()
 
